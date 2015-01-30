@@ -13,6 +13,7 @@
   "author": "Olof Johansson",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.10.2",
     "express": "^4.11.1"
   },
   "devDependencies": {
