@@ -1,0 +1,11 @@
+{
+  "name": "Beanstalker",
+  "version": "0.0.1",
+  "description": "Automatically creates deployments environments for Beanstalk repositories.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Olof Johansson",
+  "license": "ISC"
+}
