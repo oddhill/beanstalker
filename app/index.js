@@ -13,25 +13,35 @@ app.post('/', function(request, response) {
   var event = request.body.trigger;
   var payload = request.body.payload;
 
+  /**
+   * Helper function which will send the response back to the client and exit.
+   *
+   * @param obj result
+   *   An object containg a status code and a message.
+   */
+  var sendResponse = function(result) {
+    return response.status(result.status).send(result.message);
+  };
+
   // Handle the payload depending on the event.
   switch (event) {
     case 'create_branch':
       // Branch created.
-      var result = beanstalker.create(payload);
+      beanstalker.create(payload, sendResponse);
       break;
 
     case 'delete_branch':
       // Branch deleted.
-      var result = beanstalker.delete(payload);
+      beanstalker.delete(payload, sendResponse);
       break;
 
     default:
       // Unknown event.
-      var result = {status: 400, message: 'Unkown event: ' + event};
+      sendResponse({
+        status: 400,
+        message: 'Unkown event: ' + event
+      });
   }
-
-  // Send the result back to the client.
-  response.status(result.status).send(result.message);
 });
 
 // Start the server.
