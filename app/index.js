@@ -13,6 +13,11 @@ app.post('/', function(request, response) {
   var event = request.body.trigger;
   var payload = request.body.payload;
 
+  // Exit silently if the branch isn't named "feature/xxx".
+  if (!payload.name.match(/^feature\/.+/)) {
+    return;
+  }
+;
   /**
    * Helper function which will send the response back to the client and exit.
    *
