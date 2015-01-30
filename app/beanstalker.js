@@ -92,5 +92,36 @@ module.exports.create = function(payload, callback) {
 module.exports.delete = function(payload, callback) {
   // Assume success.
   var result = {status: 200, message: 'OK'};
-  callback(result);
+
+  // Load fs-extra in order to copy files.
+  var fs = require('fs-extra');
+
+  // Create the client which will handle the communication with Beanstalk.
+  var client = require('./client.js');
+
+  // Get the environments for this repository.
+  client.get(payload.repository.id + '/server_environments.json', function(error, response, body) {
+    // Iterate through every environment in order to find the environment for
+    // the deleted branch.
+    for (var key in body) {
+      var environment = body[key].server_environment;
+      if (environment.branch_name != payload.name) {
+        continue;
+      }
+
+      // Get the servers for this environment.
+      client.get(payload.repository.id + '/release_servers.json?environment_id=' + environment.id, function(error, response, body) {
+        // Assume that there's only one server.
+        var server = body[0].release_server;
+
+        // Simple remove the entire remote path. We can't delete the actual
+        // environment since Beanstalk's API doesn't allow this :(
+        fs.remove(server.remote_path);
+
+        // Return the result.
+        result.message = 'Deleted the ' + server.remote_path + ' folder.';
+        callback(result);
+      });
+    }
+  });
 };
