@@ -1,4 +1,4 @@
-# beanstalker
+# Beanstalker
 Automatically creates deployments environments for Beanstalk repositories.
 
 # Usage
