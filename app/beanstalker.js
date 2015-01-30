@@ -72,7 +72,7 @@ module.exports.create = function(payload, callback) {
               client.post(payload.repository.id + '/releases.json?environment_id=' + newEnvironment.id, data, function(error, response, body) {
                 // Release created, which means that the deployment has
                 // started.
-                result.message = 'Successfully created the ' + newEnvironment.name + 'environment.';
+                result.message = 'Successfully created the ' + newEnvironment.name + ' environment.';
                 callback(result);
               });
             });
