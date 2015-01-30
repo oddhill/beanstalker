@@ -1,4 +1,4 @@
-// Liad dependencies and initiate express.
+// Load dependencies and initiate express.
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
