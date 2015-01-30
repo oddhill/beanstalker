@@ -1,0 +1,17 @@
+// Authentication details. Change these to match the details for your account.
+var account = '';
+var username = '';
+var token = '';
+
+// Create the client with the required headers and basic authentication.
+var request = require('request-json');
+var client = request.newClient('https://' + account + '.beanstalkapp.com/api/', {
+  headers: {
+    'Content-Type': 'application/json',
+    'User-Agent': 'Beanstalker'
+  }
+});
+client.setBasicAuth(username, token);
+
+// Return the client.
+module.exports = client;
