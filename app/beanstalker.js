@@ -79,6 +79,9 @@ module.exports.create = function(payload, callback) {
           });
         });
       });
+    
+      // Stop searching for environments.
+      break;
     }
   });
 };
