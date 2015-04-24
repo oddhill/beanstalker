@@ -51,7 +51,7 @@ module.exports.create = function(payload, callback) {
             name: server.name,
             protocol: server.protocol,
             local_path: server.local_path,
-            remote_path: server.remote_path + '-f-' + payload.name.replace(/^.+\//g, ''),
+            remote_path: newPath,
             port: server.port,
             remote_addr: server.remote_addr,
             login: 'root',
