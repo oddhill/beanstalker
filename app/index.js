@@ -17,7 +17,7 @@ app.post('/', function(request, response) {
   if (!payload.name.match(/^feature\/.+/)) {
     return;
   }
-;
+
   /**
    * Helper function which will send the response back to the client and exit.
    *
