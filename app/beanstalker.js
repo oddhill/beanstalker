@@ -55,7 +55,8 @@ module.exports.create = function(payload, callback) {
             port: server.port,
             remote_addr: server.remote_addr,
             login: 'root',
-            authenticate_by_key: server.authenticate_by_key
+            authenticate_by_key: server.authenticate_by_key,
+            revision: environment.current_version
           }};
           client.post(payload.repository.id + '/release_servers.json?environment_id=' + newEnvironment.id, data, function(error, response, body) {
             var newServer = body.release_server;
