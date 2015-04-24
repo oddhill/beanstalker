@@ -27,5 +27,6 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-# Exclude the authentication details.
+# Exclude sensitive data.
 app/client.js
+app/db.js
